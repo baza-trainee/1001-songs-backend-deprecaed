@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'users.UserModel'
+
 
 # Application definition
 
@@ -37,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Songs.apps.SongsConfig',
     'rest_framework',
+
+    'apps.users',
+    'Songs',
+
 ]
 
 MIDDLEWARE = [
@@ -78,8 +83,12 @@ WSGI_APPLICATION = 'SongsBackendBaza.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'songs_db',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
