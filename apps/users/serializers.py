@@ -14,7 +14,7 @@ class ProfileSerializer(ModelSerializer):
 
 
 class UserSerializer(ModelSerializer):
-    profile = None
+    profile = ProfileSerializer()
 
     class Meta:
         model = UserModel
