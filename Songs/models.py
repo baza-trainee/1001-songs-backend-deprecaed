@@ -6,6 +6,7 @@ from django.db import models
 class Song(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200, unique=True)
+    # TODO зробити точну дату запису або вибір
     recording_date = models.DateField(null=True, blank=True)
     performers = models.CharField(max_length=200)
     collectors = models.CharField(max_length=200)
@@ -32,6 +33,7 @@ class Song(models.Model):
 
 
 class SongLocation(models.Model):
+    # TODO добавити координати
     song = models.OneToOneField(Song, on_delete=models.CASCADE, primary_key=True)
     country = models.CharField(max_length=100, default='Ukraine')
     region = models.CharField(max_length=100)
@@ -78,6 +80,7 @@ class SongMedia(models.Model):
     multichannel_audio = models.FileField(upload_to='audios/multichannel/', blank=True)
     video_file = models.FileField(upload_to='videos/', blank=True)
     text = models.TextField(blank=True)
+    # TODO спитати за поле ноти
     image = models.ImageField(upload_to='photos/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
