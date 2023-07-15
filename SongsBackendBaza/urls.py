@@ -18,12 +18,28 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.permissions import AllowAny
+
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 
 from Songs.views import SongsListCreateView, SongsRetrieveUpdateDestroyView
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title='1001SongsAPI',
+        default_version='v1',
+        description='About 1001Songs',
+        contact=openapi.Contact(email='admin@admin.com')
+    ),
+    public=True,
+    permission_classes=[AllowAny]
+)
 
 urlpatterns = [
     path('admin', admin.site.urls),
     path('auth', include('apps.auth.urls')),
     path('songs', SongsListCreateView.as_view(), name='songs_list_view'),
-    path('songs/<uuid:pk>', SongsRetrieveUpdateDestroyView.as_view(), name='songs_retrieve_update_destroy_view')
+    path('songs/<uuid:pk>', SongsRetrieveUpdateDestroyView.as_view(), name='songs_retrieve_update_destroy_view'),
+    path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
