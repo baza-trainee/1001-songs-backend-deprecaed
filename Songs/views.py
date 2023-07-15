@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from Songs.models import Song
-from Songs.serializers import SongsSerializer
+from Songs.serializers import SongSerializer
 
 
 class SongsListPagination(PageNumberPagination):
@@ -12,10 +12,10 @@ class SongsListPagination(PageNumberPagination):
 
 class SongsListCreateView(generics.ListCreateAPIView):
     queryset = Song.objects.all()
-    serializer_class = SongsSerializer
+    serializer_class = SongSerializer
     pagination_class = SongsListPagination
 
 
 class SongsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Song.objects.all()
-    serializer_class = SongsSerializer
+    serializer_class = SongSerializer
