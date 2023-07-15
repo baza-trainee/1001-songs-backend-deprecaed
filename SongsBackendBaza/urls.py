@@ -19,7 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from Songs.views import SongsListCreateView, SongsRetrieveUpdateDestroyView
+
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('auth', include('apps.auth.urls'))
+    path('auth', include('apps.auth.urls')),
+    path('songs', SongsListCreateView.as_view(), name='songs_list_view'),
+    path('songs/<uuid:pk>', SongsRetrieveUpdateDestroyView.as_view(), name='songs_retrieve_update_destroy_view')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
