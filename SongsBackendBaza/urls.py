@@ -20,10 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.permissions import AllowAny
 
+from django_otp.admin import OTPAdminSite
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
-
-from django_otp.admin import OTPAdminSite
 
 from Songs.views import SongsListCreateView, SongsRetrieveUpdateDestroyView
 
