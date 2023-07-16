@@ -8,6 +8,7 @@ from apps.users.managers import UserManager
 class UserModel(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = 'users'
+        verbose_name = 'user'
 
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
@@ -24,6 +25,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
 class ProfileModel(models.Model):
     class Meta:
         db_table = 'profile'
+        verbose_name = 'profile'
 
     name = models.CharField(max_length=20)
     surname = models.CharField(max_length=30)
