@@ -23,7 +23,11 @@ from rest_framework.permissions import AllowAny
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
+from django_otp.admin import OTPAdminSite
+
 from Songs.views import SongsListCreateView, SongsRetrieveUpdateDestroyView
+
+admin.site.__class__ = OTPAdminSite
 
 schema_view = get_schema_view(
     openapi.Info(
