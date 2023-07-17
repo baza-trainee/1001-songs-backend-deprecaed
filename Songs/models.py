@@ -34,7 +34,7 @@ class Song(models.Model):
 
 class SongLocation(models.Model):
     # TODO добавити координати
-    song = models.OneToOneField(Song, on_delete=models.CASCADE, primary_key=True)
+    song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='location')
     country = models.CharField(max_length=100, default='Ukraine')
     region = models.CharField(max_length=100)
     district_center = models.CharField(max_length=100)
@@ -48,6 +48,7 @@ class SongLocation(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        db_table = 'location'
         ordering = ['-created_at']
         verbose_name = "Song Location"
         verbose_name_plural = "Songs Locations"
@@ -57,7 +58,7 @@ class SongLocation(models.Model):
 
 
 class SongDetails(models.Model):
-    song = models.OneToOneField(Song, on_delete=models.CASCADE, primary_key=True)
+    song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='details')
     incipit = models.CharField(max_length=100)
     genre_cycle = models.CharField(max_length=30, choices=GENRE_CYCLE_CHOICES)
     poetic_text_genre = models.CharField(max_length=100)
@@ -66,6 +67,7 @@ class SongDetails(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        db_table = 'details'
         ordering = ['-created_at']
         verbose_name = "Song Details"
         verbose_name_plural = "Songs Details"
@@ -75,8 +77,8 @@ class SongDetails(models.Model):
 
 
 class SongMedia(models.Model):
-    song = models.OneToOneField(Song, on_delete=models.CASCADE, primary_key=True)
-    stereo_audio = models.FileField(upload_to='audios/stereo/')
+    song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='media')
+    stereo_audio = models.FileField(upload_to='audios/stereo/', blank=True)
     multichannel_audio = models.FileField(upload_to='audios/multichannel/', blank=True)
     video_file = models.FileField(upload_to='videos/', blank=True)
     text = models.TextField(blank=True)
@@ -86,6 +88,7 @@ class SongMedia(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        db_table = 'media'
         ordering = ['-created_at']
         verbose_name = "Song Media"
         verbose_name_plural = "Songs Media"
