@@ -17,7 +17,7 @@ class Song(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "songs"
+        db_table = "songsold"
         ordering = ['-created_at']
         verbose_name = "Song"
         verbose_name_plural = "Songs"

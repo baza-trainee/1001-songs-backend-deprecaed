@@ -1,11 +1,11 @@
 from django.db import models
 
-from Songs.choices import GENRE_CYCLE_CHOICES
+from .choices import GENRE_CYCLE_CHOICES
 
 
-class SongsTestModel(models.Model):
+class SongModel(models.Model):
     class Meta:
-        db_table = 'songstest'
+        db_table = 'songs'
 
     title = models.CharField(max_length=200, unique=True)
     recording_date = models.DateField()
@@ -18,8 +18,8 @@ class SongsTestModel(models.Model):
     updated_at = models.DateField(auto_now=True)
 
 
-class SongTestLocationModel(models.Model):
-    song = models.OneToOneField(SongsTestModel, on_delete=models.CASCADE, related_name='location')
+class SongLocationModel(models.Model):
+    song = models.OneToOneField(SongModel, on_delete=models.CASCADE, related_name='location')
     country = models.CharField(max_length=100, default='Ukraine')
     region = models.CharField(max_length=100)
     district_center = models.CharField(max_length=100)
@@ -33,8 +33,8 @@ class SongTestLocationModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class SongTestDetailsModel(models.Model):
-    song = models.OneToOneField(SongsTestModel, on_delete=models.CASCADE, related_name='details')
+class SongDetailModel(models.Model):
+    song = models.OneToOneField(SongModel, on_delete=models.CASCADE, related_name='details')
     incipit = models.CharField(max_length=100)
     genre_cycle = models.CharField(max_length=30, choices=GENRE_CYCLE_CHOICES)
     poetic_text_genre = models.CharField(max_length=100)
@@ -43,8 +43,8 @@ class SongTestDetailsModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class SongTestMediaModel(models.Model):
-    song = models.OneToOneField(SongsTestModel, on_delete=models.CASCADE, related_name='media')
+class SongMediaModel(models.Model):
+    song = models.OneToOneField(SongModel, on_delete=models.CASCADE, related_name='media')
     stereo_audio = models.FileField(upload_to='audios/stereo/', blank=True)
     multichannel_audio = models.FileField(upload_to='audios/multichannel/', blank=True)
     video_file = models.FileField(upload_to='videos/', blank=True)

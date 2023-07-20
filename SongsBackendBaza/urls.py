@@ -20,12 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.permissions import AllowAny
 
-from django_otp.admin import OTPAdminSite
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
-from Songs.views import SongsListCreateView, SongsRetrieveUpdateDestroyView
-from apps.songstest.views import SongsTestListCreateView
+from django_otp.admin import OTPAdminSite
 
 # admin.site.__class__ = OTPAdminSite
 
@@ -43,8 +41,6 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin', admin.site.urls),
     path('auth', include('apps.auth.urls')),
-    path('songs', SongsListCreateView.as_view(), name='songs_list_view'),
-    path('songst', SongsTestListCreateView.as_view(), name='songs_list_view'),
-    path('songs/<uuid:pk>', SongsRetrieveUpdateDestroyView.as_view(), name='songs_retrieve_update_destroy_view'),
+    path('songs', include('apps.songs.urls')),
     path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
