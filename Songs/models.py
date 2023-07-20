@@ -81,7 +81,7 @@ class SongMedia(models.Model):
     stereo_audio = models.FileField(upload_to='audios/stereo/', blank=True)
     multichannel_audio = models.FileField(upload_to='audios/multichannel/', blank=True)
     video_file = models.FileField(upload_to='videos/', blank=True)
-    text = models.TextField(blank=True)
+    text = models.TextField()
     # TODO спитати за поле ноти
     image = models.ImageField(upload_to='photos/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)

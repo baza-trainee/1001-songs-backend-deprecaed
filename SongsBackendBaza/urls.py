@@ -25,6 +25,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
 from Songs.views import SongsListCreateView, SongsRetrieveUpdateDestroyView
+from apps.songstest.views import SongsTestListCreateView
 
 # admin.site.__class__ = OTPAdminSite
 
@@ -43,6 +44,7 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path('auth', include('apps.auth.urls')),
     path('songs', SongsListCreateView.as_view(), name='songs_list_view'),
+    path('songst', SongsTestListCreateView.as_view(), name='songs_list_view'),
     path('songs/<uuid:pk>', SongsRetrieveUpdateDestroyView.as_view(), name='songs_retrieve_update_destroy_view'),
     path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     'apps.auth',
     'apps.users',
+    'apps.songstest',
     'Songs',
 
 ]
