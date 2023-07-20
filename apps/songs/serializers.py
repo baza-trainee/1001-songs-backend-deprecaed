@@ -1,12 +1,12 @@
 from django.db.transaction import atomic
 from rest_framework.serializers import ModelSerializer
 
-from apps.songs.models import SongModel, SongLocationModel, SongDetailModel, SongMediaModel
+from apps.songs.models import Song, SongLocation, SongDetail, SongMedia
 
 
 class SongLocationSerializer(ModelSerializer):
     class Meta:
-        model = SongLocationModel
+        model = SongLocation
         fields = ('id', 'country', 'region', 'district_center', 'administrative_center', 'ethnicity',
                   'ethnographic_district', 'official_name', 'unofficial_name', 'recording_location',
                   )
@@ -14,13 +14,13 @@ class SongLocationSerializer(ModelSerializer):
 
 class SongDetailSerializer(ModelSerializer):
     class Meta:
-        model = SongDetailModel
+        model = SongDetail
         fields = ('id', 'incipit', 'genre_cycle', 'poetic_text_genre', 'texture')
 
 
 class SongMediaSerializer(ModelSerializer):
     class Meta:
-        model = SongMediaModel
+        model = SongMedia
         fields = ('id', 'stereo_audio', 'multichannel_audio', 'video_file', 'text', 'image')
 
 
@@ -30,16 +30,19 @@ class SongSerializer(ModelSerializer):
     media = SongMediaSerializer()
 
     class Meta:
-        model = SongModel
+        model = Song
         fields = ('id', 'title', 'recording_date', 'performers', 'collectors', 'source', 'location', 'details', 'media')
 
     @atomic
     def create(self, validated_data):
-        location = validated_data.pop('location')
-        details = validated_data.pop('details')
-        media = validated_data.pop('media')
-        song = SongModel.objects.create(**validated_data)
-        SongLocationModel.objects.create(**location, song=song)
-        SongDetailModel.objects.create(**details, song=song)
-        SongMediaModel.objects.create(**media, song=song)
+        location_data = validated_data.pop('location')
+        details_data = validated_data.pop('details')
+        media_data = validated_data.pop('media')
+
+        song = Song.objects.create(**validated_data)
+
+        SongLocation.objects.create(song=song, **location_data)
+        SongDetail.objects.create(song=song, **details_data)
+        SongMedia.objects.create(song=song, **media_data)
+
         return song

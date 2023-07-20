@@ -51,8 +51,6 @@ INSTALLED_APPS = [
     'apps.auth',
     'apps.users',
     'apps.songs',
-    'Songs',
-
 ]
 
 MIDDLEWARE = [
