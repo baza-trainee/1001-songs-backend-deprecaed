@@ -42,5 +42,6 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path('auth', include('apps.auth.urls')),
     path('songs', include('apps.songs.urls')),
+    path('map', include('apps.staticmap.urls')),
     path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
