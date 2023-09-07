@@ -20,28 +20,28 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.permissions import AllowAny
 
-from drf_yasg import openapi
-from drf_yasg.views import get_schema_view
+# from drf_yasg import openapi
+# from drf_yasg.views import get_schema_view
 
 from django_otp.admin import OTPAdminSite
 
 # admin.site.__class__ = OTPAdminSite
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title='1001SongsAPI',
-        default_version='v1',
-        description='About 1001Songs',
-        contact=openapi.Contact(email='admin@admin.com')
-    ),
-    public=True,
-    permission_classes=[AllowAny]
-)
+# schema_view = get_schema_view(
+#     openapi.Info(
+#         title='1001SongsAPI',
+#         default_version='v1',
+#         description='About 1001Songs',
+#         contact=openapi.Contact(email='admin@admin.com')
+#     ),
+#     public=True,
+#     permission_classes=[AllowAny]
+# )
 
 urlpatterns = [
     path('admin', admin.site.urls),
     path('auth', include('apps.auth.urls')),
     path('songs', include('apps.songs.urls')),
     path('map', include('apps.staticmap.urls')),
-    path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
+    # path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
