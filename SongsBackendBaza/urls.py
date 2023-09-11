@@ -47,4 +47,4 @@ urlpatterns = ([
     # path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
 ]
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
-urlpatterns += staticfiles_urlpatterns()
+urlpatterns += staticfiles_urlpatterns() # test for
