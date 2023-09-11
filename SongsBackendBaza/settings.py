@@ -115,7 +115,7 @@ WSGI_APPLICATION = 'SongsBackendBaza.wsgi.application'
 # Render DB
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.parse('postgres://songdb_user:oVSvmesx03rqzcVyPPriFTvaPrVzzkX5@dpg-cj72kg45kgrc73ao92ng-a.oregon-postgres.render.com/songdb')
 }
 
 
