@@ -43,4 +43,4 @@ inflection==0.5.1
 jsonschema==4.17.3
 jsonschema-specifications==0.1.3
 referencing==0.8.9
-rpds-py==0.10.2
+# rpds-py==0.10.2 может и не надо будет выдает ошибку на рендере
