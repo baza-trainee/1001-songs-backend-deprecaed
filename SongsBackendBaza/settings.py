@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',
     'django_filters',
     'corsheaders',
+    'drf_spectacular',
 
     'apps.auth',
     'apps.users',
