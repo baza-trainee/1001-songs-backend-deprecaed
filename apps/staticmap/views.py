@@ -15,6 +15,8 @@ class MapListView(GenericAPIView):
 
 
 class MapRegionListView(GenericAPIView):
+    queryset = Song.objects.all()
+
     def get(self, *args, **kwargs):
         params = self.request.query_params.dict()
         if params:
