@@ -5,11 +5,10 @@ colorama==0.4.6
 coreapi==2.3.3
 coreschema==0.0.4
 dj-database-url==2.0.0
-#
+# понижена версия для рендера
 Django==3.2.19
-#
+# понижена версия для рендера
 django-cors-headers==4.1.0
-# django-dotenv==1.4.2
 django-filter==23.2
 django-otp==1.2.2
 djangorestframework==3.14.0
@@ -21,8 +20,10 @@ itypes==1.2.0
 Jinja2==3.1.2
 MarkupSafe==2.1.3
 Pillow==9.5.0
+# отключеньі для рендера
 # psycopg==3.1.9
 # psycopg-binary==3.1.9
+# установлен для рендера
 psycopg2==2.9.7
 PyJWT==2.7.0
 pypng==0.20220715.0
@@ -32,10 +33,9 @@ requests==2.31.0
 sqlparse==0.4.4
 typing_extensions==4.7.1
 tzdata==2023.3
-#
+# понижена версия для рендера
 urllib3==1.26.16
 whitenoise==6.5.0
-#
 PyYAML==6.0.1
 attrs==23.1.0
 drf-spectacular==0.26.4

@@ -1,4 +1,4 @@
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from apps.users.serializers import UserSerializer
 
@@ -8,8 +8,3 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
         data['user'] = UserSerializer(self.user).data
         return data
-
-
-class CustomTokenRefreshSerializers(TokenRefreshSerializer):
-    def validate(self, attrs):
-        return super().validate(attrs)
