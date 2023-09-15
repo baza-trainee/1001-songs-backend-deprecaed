@@ -7,8 +7,8 @@ from apps.songs.models import Song, SongLocation, SongDetail, SongMedia
 class SongLocationSerializer(ModelSerializer):
     class Meta:
         model = SongLocation
-        fields = ('id', 'country', 'region', 'district_center', 'administrative_center', 'ethnicity',
-                  'ethnographic_district', 'official_name', 'unofficial_name', 'recording_location',
+        fields = ('id', 'country', 'region', 'district_center', 'administrative_code', 'ethnos',
+                  'ethnographic_district', 'official_name_city', 'unofficial_name_city', 'recording_location',
                   )
 
 

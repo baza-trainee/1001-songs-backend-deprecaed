@@ -19,33 +19,19 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from rest_framework.permissions import AllowAny
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
-# from drf_yasg import openapi
-# from drf_yasg.views import get_schema_view
 
-from django_otp.admin import OTPAdminSite
+# from django_otp.admin import OTPAdminSite
 
 # admin.site.__class__ = OTPAdminSite
 
-# schema_view = get_schema_view(
-#     openapi.Info(
-#         title='1001SongsAPI',
-#         default_version='v1',
-#         description='About 1001Songs',
-#         contact=openapi.Contact(email='admin@admin.com')
-#     ),
-#     public=True,
-#     permission_classes=[AllowAny]
-# )
 
 urlpatterns = ([
     path('admin', admin.site.urls),
     # path('api/v1/auth', include('apps.auth.urls')), пока не надо
     path('api/v1/songs', include('apps.songs.urls')),
     path('api/v1/map', include('apps.staticmap.urls')),
-    # path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
 ]
