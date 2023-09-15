@@ -33,7 +33,7 @@ class SongsAdmin(admin.ModelAdmin):
     def get_urls(self) -> list:
         """
         Overrides URLs for the Song model in admin.
-        Adds custom URL for copying songs.
+        Adds custom URL for copying songs
         """
         urls = super().get_urls()
         custom_urls = [

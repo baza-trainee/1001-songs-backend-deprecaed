@@ -9,7 +9,7 @@ def copy_song(request, song_id) -> HttpResponseRedirect:
 
        Args:
            request: HTTP request.
-           song_id (int): The identifier of the song to copy.
+           song_id (int): The identifier of the song to copy
 
        Returns:
            HttpResponseRedirect: Redirects to the song administration page.
