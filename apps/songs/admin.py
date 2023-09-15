@@ -1,5 +1,7 @@
 from django.contrib import admin
-
+from django.urls import path, reverse
+from django.utils.html import format_html
+from apps.songs.admin_helpers import copy_song
 from apps.songs.models import Song, SongLocation, SongDetail, SongMedia
 
 
@@ -21,10 +23,32 @@ class SongMediaInline(admin.StackedInline):
 @admin.register(Song)
 class SongsAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'recording_date', 'performers',
-                    'collectors', 'source', 'location', 'details', 'media')
+                    'collectors', 'source', 'location', 'details', 'media', 'copy_button')  # добавили copy_button
     list_filter = ('created_at', 'updated_at')
     inlines = [SongLocationInline, SongDetailInline, SongMediaInline]
     search_fields = ('title',)
+
+    # form = CopySongForm
+
+    def get_urls(self) -> list:
+        """
+        Overrides URLs for the Song model in admin.
+        Adds custom URL for copying songs
+        """
+        urls = super().get_urls()
+        custom_urls = [
+            path('<int:song_id>/copy/', self.admin_site.admin_view(copy_song), name='copy_song'),
+        ]
+        return custom_urls + urls
+
+    def copy_button(self, obj: Song) -> str:
+        """
+        Creates a Copy button in the admin interface.
+        """
+        return format_html('<a class="button" href="{}">Copy</a>', reverse('admin:copy_song', args=[obj.pk]))
+
+    copy_button.short_description = 'Copy Song'
+    copy_button.allow_tags = True
 
 
 @admin.register(SongLocation)
@@ -46,3 +70,4 @@ class SongMediaAdmin(admin.ModelAdmin):
     list_display = ('song', 'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
     search_fields = ('song',)
+
