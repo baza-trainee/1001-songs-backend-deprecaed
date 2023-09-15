@@ -23,12 +23,12 @@ class SongMediaInline(admin.StackedInline):
 @admin.register(Song)
 class SongsAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'recording_date', 'performers',
-                    'collectors', 'source', 'location', 'details', 'media', 'copy_button')  # добавили copy_button
+                    'collectors', 'source', 'location', 'details', 'media', 'copy_button')
     list_filter = ('created_at', 'updated_at')
     inlines = [SongLocationInline, SongDetailInline, SongMediaInline]
     search_fields = ('title',)
 
-    # form = CopySongForm
+
 
     def get_urls(self) -> list:
         """
