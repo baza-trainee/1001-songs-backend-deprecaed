@@ -57,15 +57,21 @@ def copy_song(request, song_id) -> HttpResponseRedirect:
 
     old_song_media = SongMedia.objects.filter(song=old_song)
     for media in old_song_media:
-        old_image = media.image
-        old_image.open()
-        new_media = SongMedia.objects.create(
-            song=new_song,
-        )
-        new_media.image.save(
-            old_image.name,
-            ContentFile(old_image.read())
-        )
-        old_image.close()
+        if media.image and hasattr(media.image, 'file'):
+            old_image = media.image
+            old_image.open()
+            new_media = SongMedia.objects.create(
+                song=new_song,
+            )
+            new_media.image.save(
+                old_image.name,
+                ContentFile(old_image.read())
+            )
+            old_image.close()
+        else:
+
+            SongMedia.objects.create(
+                song=new_song,
+            )
 
     return HttpResponseRedirect('/adminsongs/song/')
