@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from apps.songs.models import Song, SongLocation, SongDetail, SongMedia
-
+#
 
 class SongLocationInline(admin.StackedInline):
     model = SongLocation
