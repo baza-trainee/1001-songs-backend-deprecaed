@@ -6,7 +6,7 @@ from .choices import GENRE_CYCLE_CHOICES
 
 
 class Song(models.Model):
-    id = models.UUIDField(primary_key = True,default = uuid.uuid4, editable = False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200, unique=True)
     recording_date = models.DateField()
     performers = models.CharField(max_length=200)
@@ -28,7 +28,7 @@ class Song(models.Model):
 
 
 class SongLocation(models.Model):
-    id = models.UUIDField(primary_key = True,default = uuid.uuid4, editable = False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='location')
     country = models.CharField(max_length=100, default='Ukraine')
     region = models.CharField(max_length=100)
@@ -53,7 +53,7 @@ class SongLocation(models.Model):
 
 
 class SongDetail(models.Model):
-    id = models.UUIDField(primary_key = True,default = uuid.uuid4, editable = False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='details')
     incipit = models.CharField(max_length=100)
     genre_cycle = models.CharField(max_length=30, choices=GENRE_CYCLE_CHOICES)

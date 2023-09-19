@@ -117,7 +117,8 @@ WSGI_APPLICATION = 'SongsBackendBaza.wsgi.application'
 # Render DB
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://songdb_user:oVSvmesx03rqzcVyPPriFTvaPrVzzkX5@dpg-cj72kg45kgrc73ao92ng-a.oregon-postgres.render.com/songdb')
+    # 'default': dj_database_url.parse('postgres://songdb_user:oVSvmesx03rqzcVyPPriFTvaPrVzzkX5@dpg-cj72kg45kgrc73ao92ng-a.oregon-postgres.render.com/songdb')
+    'default': dj_database_url.parse('postgres://songs_render_db_user:UuKDRsOca2Upu51j10wz1sZHA7jU9cXX@dpg-ck4v2aui9prc73b10t7g-a.oregon-postgres.render.com/songs_render_db')
 }
 
 

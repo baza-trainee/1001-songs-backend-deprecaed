@@ -35,7 +35,7 @@ class SongsAdmin(admin.ModelAdmin):
         """
         urls = super().get_urls()
         custom_urls = [
-            path('<int:song_id>/copy/', self.admin_site.admin_view(copy_song), name='copy_song'),
+            path('<uuid:song_id>/copy/', self.admin_site.admin_view(copy_song), name='copy_song'),
         ]
         return custom_urls + urls
 
