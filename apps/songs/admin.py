@@ -28,8 +28,6 @@ class SongsAdmin(admin.ModelAdmin):
     inlines = [SongLocationInline, SongDetailInline, SongMediaInline]
     search_fields = ('title',)
 
-
-
     def get_urls(self) -> list:
         """
         Overrides URLs for the Song model in admin.

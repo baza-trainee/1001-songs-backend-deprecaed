@@ -1,9 +1,12 @@
+import uuid
+
 from django.db import models
 
 from .choices import GENRE_CYCLE_CHOICES
 
 
 class Song(models.Model):
+    id = models.UUIDField(primary_key = True,default = uuid.uuid4, editable = False)
     title = models.CharField(max_length=200, unique=True)
     recording_date = models.DateField()
     performers = models.CharField(max_length=200)
@@ -25,6 +28,7 @@ class Song(models.Model):
 
 
 class SongLocation(models.Model):
+    id = models.UUIDField(primary_key = True,default = uuid.uuid4, editable = False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='location')
     country = models.CharField(max_length=100, default='Ukraine')
     region = models.CharField(max_length=100)
@@ -49,6 +53,7 @@ class SongLocation(models.Model):
 
 
 class SongDetail(models.Model):
+    id = models.UUIDField(primary_key = True,default = uuid.uuid4, editable = False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='details')
     incipit = models.CharField(max_length=100)
     genre_cycle = models.CharField(max_length=30, choices=GENRE_CYCLE_CHOICES)
@@ -68,12 +73,22 @@ class SongDetail(models.Model):
 
 
 class SongMedia(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='media')
-    stereo_audio = models.FileField(upload_to='audios/stereo/', blank=True)
-    multichannel_audio = models.FileField(upload_to='audios/multichannel/', blank=True)
-    video_file = models.FileField(upload_to='videos/', blank=True)
+    stereo_audio = models.CharField(max_length=255, blank=True)
+    multichannel_audio_1 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_2 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_3 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_4 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_5 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_6 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_7 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_8 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_9 = models.CharField(max_length=255, blank=True)
+    multichannel_audio_10 = models.CharField(max_length=255, blank=True)
+    video_file = models.CharField(max_length=255, blank=True)
     text = models.TextField(blank=True)
-    image = models.ImageField(upload_to='photos/', blank=True)
+    image = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

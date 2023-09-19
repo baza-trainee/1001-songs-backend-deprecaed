@@ -15,7 +15,7 @@ class SongListCreateView(ListCreateAPIView):
         'location__country',
         'location__region',
         'location__ethnographic_district',
-        'details__genre_cycle'
+        'details__genre_cycle',
     ]
     search_fields = ['title']
     ordering_fields = ['title', 'recording_date']
