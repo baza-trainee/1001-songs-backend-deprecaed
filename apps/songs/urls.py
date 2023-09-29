@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import SongListCreateView, SongRetrieveUpdateDestroyView
+from .views import SongListCreateView, SongRetrieveUpdateDestroyView , SongsByLocationView
 
 urlpatterns = [
     path('', SongListCreateView.as_view(), name='list_crate_song'),
