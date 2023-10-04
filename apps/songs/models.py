@@ -1,5 +1,6 @@
 import uuid
 
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from .choices import GENRE_CYCLE_CHOICES
@@ -75,20 +76,11 @@ class SongDetail(models.Model):
 class SongMedia(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='media')
-    stereo_audio = models.CharField(max_length=255, blank=True)
-    multichannel_audio_1 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_2 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_3 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_4 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_5 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_6 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_7 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_8 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_9 = models.CharField(max_length=255, blank=True)
-    multichannel_audio_10 = models.CharField(max_length=255, blank=True)
-    video_file = models.CharField(max_length=255, blank=True)
+    stereo_audio = models.URLField(blank=True)
+    multichannel_audio = ArrayField(models.URLField(max_length=255, blank=True))
+    video_file = models.URLField(blank=True)
     text = models.TextField(blank=True)
-    image = models.CharField(max_length=255, blank=True)
+    image = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

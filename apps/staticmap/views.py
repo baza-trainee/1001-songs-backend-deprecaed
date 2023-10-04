@@ -47,6 +47,7 @@ class MapRegionListView(GenericAPIView):
 
     def get(self, *args, **kwargs):
         params = self.request.query_params.dict()
+        print(params)
         if params:
             songs_region = Song.objects.filter(location__region=params['region'])
             serializer = SongSerializer(instance=songs_region, many=True)
