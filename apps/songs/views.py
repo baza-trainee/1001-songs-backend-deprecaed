@@ -30,6 +30,7 @@ class SongRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     queryset = Song
     serializer_class = SongSerializer
 
+
 class SongsByLocationView(generics.GenericAPIView):
     """
     Retrieve a list of songs recorded in a specific location.
