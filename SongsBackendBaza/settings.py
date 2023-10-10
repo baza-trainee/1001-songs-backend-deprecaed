@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_spectacular',
 
+    'apps.news',
     'apps.auth',
     'apps.users',
     'apps.songs',
@@ -113,6 +114,12 @@ WSGI_APPLICATION = 'SongsBackendBaza.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Render DB
 
