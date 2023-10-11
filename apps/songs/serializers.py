@@ -9,6 +9,7 @@ class SongLocationSerializer(ModelSerializer):
         model = SongLocation
         fields = ('id', 'country', 'region', 'district_center', 'administrative_code', 'ethnos',
                   'ethnographic_district', 'official_name_city', 'unofficial_name_city', 'recording_location',
+                  'coordinates',
                   )
 
 
@@ -21,9 +22,8 @@ class SongDetailSerializer(ModelSerializer):
 class SongMediaSerializer(ModelSerializer):
     class Meta:
         model = SongMedia
-        fields = (
-            'id', 'stereo_audio', 'multichannel_audio', 'video_file', 'text', 'image'
-                  )
+        fields = ('id', 'stereo_audio', 'multichannel_audio', 'video_file', 'text', 'photo_of_performers', 'notes',
+                  'melogeographical_data',)
 
 
 class SongSerializer(ModelSerializer):
@@ -33,7 +33,9 @@ class SongSerializer(ModelSerializer):
 
     class Meta:
         model = Song
-        fields = ('id', 'title', 'recording_date', 'performers', 'collectors', 'source', 'location', 'details', 'media')
+        fields = ('id', 'title', 'recording_date', 'performers', 'collectors', 'source', 'location',
+                  'archive', 'details', 'media',
+                  )
 
     @atomic
     def create(self, validated_data):
