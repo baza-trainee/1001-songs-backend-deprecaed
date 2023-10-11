@@ -1,5 +1,5 @@
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from apps.songs.models import Song
 from apps.songs.serializers import SongSerializer
@@ -11,7 +11,7 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 
 
-class SongListCreateView(ListCreateAPIView):
+class SongListView(ListAPIView):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
@@ -26,7 +26,7 @@ class SongListCreateView(ListCreateAPIView):
     ordering = ['title']
 
 
-class SongRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+class SongRetrieveView(RetrieveAPIView):
     queryset = Song
     serializer_class = SongSerializer
 
