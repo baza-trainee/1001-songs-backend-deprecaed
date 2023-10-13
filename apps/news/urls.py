@@ -2,11 +2,11 @@
 
 from django.urls import path
 
-from .views import NewsDetailView,   NewsDetailView,  NewsListDetailView
+from .views import NewsDetailView, NewsListDetailView, NewsView, NewsViewAll
 
 urlpatterns = [
-    path('', NewsDetailView.as_view(), name='list_create_news'),
-    path('<int:pk>/', NewsDetailView.as_view(), name='list_create_news'),
+    path('', NewsViewAll.as_view(), name='list_create_news'),
+    path('<int:pk>/', NewsView.as_view(), name='list_create_news'),
     path('_detail/', NewsListDetailView.as_view(), name='news_list_create_view'),
     path('_detail/<int:pk>/', NewsDetailView.as_view(), name='news_retrieve_view')
 ]

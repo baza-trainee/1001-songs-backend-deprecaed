@@ -3,7 +3,7 @@ from .models import News, NewsDetail
 from .serializers import NewsSerializer, NewsDetailsSerializer
 
 
-class NewsDetailView(generics.RetrieveAPIView):
+class NewsView(generics.RetrieveAPIView):
     """
     Retrieve information about a specific news item.
 
@@ -22,6 +22,27 @@ class NewsDetailView(generics.RetrieveAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     http_method_names = ['get']
+    lookup_field = 'pk'
+
+
+class NewsViewAll(generics.ListCreateAPIView):
+    """
+    Retrieve information about a specific news item.
+
+    Allowed methods:
+    - GET: Retrieve information about a news item using its identifier (pk).
+
+    URL:
+    - /news/
+
+    Parameters:
+    - pk: News item identifier (integer).
+
+    """
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+    http_method_names = ['get']
+
 
 
 class NewsListDetailView(generics.ListCreateAPIView):
@@ -62,3 +83,4 @@ class NewsDetailView(generics.RetrieveAPIView):
     queryset = NewsDetail.objects.all()
     serializer_class = NewsDetailsSerializer
     http_method_names = ['get']
+    lookup_field = 'pk'
