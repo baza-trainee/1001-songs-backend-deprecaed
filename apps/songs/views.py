@@ -12,6 +12,9 @@ from rest_framework.response import Response
 
 
 class SongListView(ListAPIView):
+    """
+    List of songs
+    """
     queryset = Song.objects.all()
     serializer_class = SongSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
@@ -27,7 +30,10 @@ class SongListView(ListAPIView):
 
 
 class SongRetrieveView(RetrieveAPIView):
-    queryset = Song
+    """
+    Retrieve song by id
+    """
+    queryset = Song.objects.all()
     serializer_class = SongSerializer
 
 
