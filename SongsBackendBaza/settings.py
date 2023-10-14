@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
 
     'apps.news',
+    'apps.expeditions',
     'apps.auth',
     'apps.users',
     'apps.songs',
