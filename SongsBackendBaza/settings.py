@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     'apps.news',
     'apps.expeditions',
+    'apps.projects',
     'apps.auth',
     'apps.users',
     'apps.songs',
