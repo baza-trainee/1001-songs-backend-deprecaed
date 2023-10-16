@@ -8,6 +8,9 @@ from apps.songs.serializers import SongSerializer
 
 
 class MapListView(GenericAPIView):
+    """
+    List of songs by regions
+    """
     @staticmethod
     def get(*args, **kwargs):
         # не работает на версии джанго под рендер
@@ -43,6 +46,9 @@ class MapListView(GenericAPIView):
 
 
 class MapRegionListView(GenericAPIView):
+    """
+    List of songs in the selected region
+    """
     queryset = Song.objects.all()
 
     def get(self, *args, **kwargs):
