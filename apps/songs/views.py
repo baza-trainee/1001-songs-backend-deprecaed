@@ -1,14 +1,16 @@
-from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.generics import ListAPIView, RetrieveAPIView
-
-from apps.songs.models import Song
-from apps.songs.serializers import SongSerializer
-
-from django_filters.rest_framework import DjangoFilterBackend
-
 from django.db.models import Q
+
 from rest_framework import generics, status
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
+
+from .models import Song
+from .serializers import SongSerializer
+from .filters import SongFilter
+
+
+# from rest_framework.filters import SearchFilter, OrderingFilter
+# from django_filters.rest_framework import DjangoFilterBackend
 
 
 class SongListView(ListAPIView):
@@ -17,16 +19,17 @@ class SongListView(ListAPIView):
     """
     queryset = Song.objects.all()
     serializer_class = SongSerializer
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = [
-        'location__country',
-        'location__region',
-        'location__ethnographic_district',
-        'details__genre_cycle',
-    ]
-    search_fields = ['title']
-    ordering_fields = ['title', 'recording_date']
-    ordering = ['title']
+    filterset_class = SongFilter
+    # filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    # filterset_fields = [
+    #     'location__country',
+    #     'location__region',
+    #     'location__ethnographic_district',
+    #     'details__genre_cycle',
+    # ]
+    # search_fields = ['title']
+    # ordering_fields = ['title', 'recording_date']
+    # ordering = ['title']
 
 
 class SongRetrieveView(RetrieveAPIView):

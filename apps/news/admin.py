@@ -3,7 +3,6 @@ from django.contrib import admin
 from apps.news.models import News, NewsDetail
 
 
-# Register your models here.
 class NewsDetailInline(admin.StackedInline):
     model = NewsDetail
     extra = 1
@@ -22,5 +21,5 @@ class NewsAdmin(admin.ModelAdmin):
 class NewsDetailAdmin(admin.ModelAdmin):
     list_display = ('news_title', 'date', 'location', 'author', 'editor')
     list_filter = ('date',)
-    search_fields = ('news_title' , 'location')
+    search_fields = ('news_title', 'location')
     ordering = ('date',)
