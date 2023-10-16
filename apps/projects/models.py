@@ -19,6 +19,6 @@ class Project(models.Model):
     text_2 = models.TextField(blank=True)
     author = models.CharField(max_length=20, blank=True)
     editor = models.CharField(max_length=20, blank=True)
-    svitliny = ArrayField(models.URLField(blank=True))
+    svitliny = ArrayField(models.URLField(), blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
