@@ -3,7 +3,6 @@ from django.contrib import admin
 from apps.news.models import News, NewsDetail
 
 
-# Register your models here.
 class NewsDetailInline(admin.StackedInline):
     model = NewsDetail
     extra = 1
