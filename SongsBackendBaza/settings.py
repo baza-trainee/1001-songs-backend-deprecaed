@@ -13,19 +13,19 @@ import os
 from pathlib import Path
 
 import dj_database_url
-
+from dotenv import load_dotenv
 from .extra_conf import *
 
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@3(0py92b@kua^!!4=bemp&(4yrhi8v3yo=i732(+q76=cbdco'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,7 +33,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.UserModel'
-
 
 # Application definition
 
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'drf_spectacular',
+    'storages',
 
     'apps.news',
     'apps.expeditions',
@@ -76,7 +76,6 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-
 ROOT_URLCONF = 'SongsBackendBaza.urls'
 
 TEMPLATES = [
@@ -97,39 +96,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SongsBackendBaza.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
 
-# LocalDB
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'songs_db',
-#         'USER': 'user',
-#         'PASSWORD': 'user',
-#         'HOST': 'localhost',
-#         'PORT': 5432,
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 # Render DB
 
-DATABASES = {
-    # 'default': dj_database_url.parse('postgres://songdb_user:oVSvmesx03rqzcVyPPriFTvaPrVzzkX5@dpg-cj72kg45kgrc73ao92ng-a.oregon-postgres.render.com/songdb')
-    'default': dj_database_url.parse('postgres://songs_render_db_user:UuKDRsOca2Upu51j10wz1sZHA7jU9cXX@dpg-ck4v2aui9prc73b10t7g-a.oregon-postgres.render.com/songs_render_db')
-}
+# DATABASES = {
+#     # 'default': dj_database_url.parse('postgres://songdb_user:oVSvmesx03rqzcVyPPriFTvaPrVzzkX5@dpg-cj72kg45kgrc73ao92ng-a.oregon-postgres.render.com/songdb')
+#     'default': dj_database_url.parse('postgres://songs_render_db_user:UuKDRsOca2Upu51j10wz1sZHA7jU9cXX@dpg-ck4v2aui9prc73b10t7g-a.oregon-postgres.render.com/songs_render_db')
+# }
 
+
+# Amazon RDS PostgreSQL database - markup
+
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get("DATABASE_ENGINE"),
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'USER': os.environ.get("DATABASE_USER"),
+        'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
+        'HOST': os.environ.get("DATABASE_HOST"),
+        'PORT': os.environ.get("DATABASE_PORT"),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -149,7 +140,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -160,7 +150,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -177,3 +166,10 @@ MEDIA_ROOT = BASE_DIR / 'media_cdn'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_QUERYSTRING_AUTH = False
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"

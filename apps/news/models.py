@@ -9,7 +9,7 @@ class News(models.Model):
     date = models.DateField()
     news_title = models.CharField(max_length=200, blank=True)
     location = models.CharField(max_length=200, blank=True)
-    photo = models.URLField(blank=True)
+    photo = models.ImageField(blank=True)
     class Meta:
         verbose_name = "News"
         verbose_name_plural = "News"
@@ -20,9 +20,9 @@ class NewsDetail(models.Model):
     news_title = models.CharField(max_length=200)
     date = models.DateField()
     location = models.CharField(max_length=200)
-    photo1 = models.URLField(blank=True)
+    photo1 = models.ImageField(blank=True)
     text1 = models.TextField(blank=True)
-    photo2 = models.URLField(blank=True)
+    photo2 = models.ImageField(blank=True)
     text2 = models.TextField(blank=True)
     author = models.CharField(max_length=200, blank=True)
     editor = models.CharField(max_length=200, blank=True)

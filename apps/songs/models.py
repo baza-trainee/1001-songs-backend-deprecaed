@@ -78,7 +78,7 @@ class SongDetail(models.Model):
 class SongMedia(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='media')
-    stereo_audio = models.URLField(blank=True)
+    stereo_audio = models.FileField(blank=True)
     multichannel_audio = ArrayField(models.URLField(), blank=True)
     video_file = models.URLField(blank=True)
     text = models.TextField(blank=True)
