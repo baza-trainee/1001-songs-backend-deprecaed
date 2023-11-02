@@ -82,7 +82,7 @@ class SongMedia(models.Model):
     multichannel_audio = ArrayField(models.URLField(), blank=True)
     video_file = models.URLField(blank=True)
     text = models.TextField(blank=True)
-    photo_of_performers = models.URLField(blank=True)
+    photo_of_performers = models.ImageField(blank=True)
     notes = models.CharField(max_length=255, blank=True)
     melogeographical_data = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

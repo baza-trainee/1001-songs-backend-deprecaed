@@ -22,7 +22,7 @@ class Expedition(models.Model):
     text_3 = models.TextField(blank=True)
     text_4 = models.TextField(blank=True)
     text_5 = models.TextField(blank=True)
-    photo = models.URLField(blank=True)
+    photo = models.ImageField(blank=True)
     comment_to_photo = models.CharField(max_length=100, blank=True)
     text_6 = models.TextField(blank=True)
     video_2 = models.URLField(blank=True)

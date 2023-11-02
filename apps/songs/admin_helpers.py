@@ -74,4 +74,4 @@ def copy_song(request, song_id) -> HttpResponseRedirect:
                 song=new_song,
             )
 
-    return HttpResponseRedirect('/adminsongs/song/')
+    return HttpResponseRedirect('/admin/songs/song/')
