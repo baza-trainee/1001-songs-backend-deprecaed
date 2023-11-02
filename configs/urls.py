@@ -1,5 +1,5 @@
 """
-URL configuration for SongsBackendBaza project.
+URL configuration for configs project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -28,7 +28,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 
 urlpatterns = ([
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     # path('api/v1/auth', include('apps.auth.urls')), пока не надо
     path('api/v1/songs', include('apps.songs.urls')),
     path('api/v1/map', include('apps.staticmap.urls')),
