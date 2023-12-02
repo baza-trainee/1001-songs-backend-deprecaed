@@ -56,9 +56,9 @@ class MapRegionListView(GenericAPIView):
         params = self.request.query_params.dict()
         print(params)
         if params:
-            songs_region = Song.objects.filter(location__region=params['region'])
-            serializer = SongSerializer(instance=songs_region, many=True)
+            songs_city = Song.objects.filter(location__official_name_city=params['official_name_city'])
+            serializer = SongSerializer(instance=songs_city, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
-            return Response('Specify the search region', status=status.HTTP_404_NOT_FOUND)
+            return Response('Specify the search city', status=status.HTTP_404_NOT_FOUND)
 
