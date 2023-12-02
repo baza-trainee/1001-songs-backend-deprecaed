@@ -14,7 +14,8 @@ class MapListView(GenericAPIView):
     @staticmethod
     def get(*args, **kwargs):
         # не работает на версии джанго под рендер
-        # result_count = Song.objects.all().values('location__region').annotate(count=Count('location__region'))
+        result_count = (Song.objects.all().values('location__official_name_city', 'location__coordinates')
+                        .annotate(count=Count('location__official_name_city')))
         count_region = Song.objects.all().aggregate(
             Рівне=Count('id', filter=Q(location__region='Рівне')),
             Кіровоград=Count('id', filter=Q(location__region='Кіровоград')),
@@ -42,7 +43,7 @@ class MapListView(GenericAPIView):
             Чернігів=Count('id', filter=Q(location__region='Чернігів')),
             Крим=Count('id', filter=Q(location__region='Крим')),
         )
-        return Response(count_region)
+        return Response(result_count)
 
 
 class MapRegionListView(GenericAPIView):
