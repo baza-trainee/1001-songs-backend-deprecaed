@@ -3,7 +3,7 @@ import uuid
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-from .choices import GENRE_CYCLE_CHOICES
+from .choices import GENRE_CYCLE_CHOICES, COUNTRY_CHOICES, REGION_CHOICES
 
 
 class Song(models.Model):
@@ -32,8 +32,8 @@ class Song(models.Model):
 class SongLocation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='location')
-    country = models.CharField(max_length=100, default='Україна')
-    region = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, default='Україна', choices=COUNTRY_CHOICES)
+    region = models.CharField(max_length=100, choices=REGION_CHOICES)
     district_center = models.CharField(max_length=100)
     administrative_code = models.CharField(max_length=100)
     ethnos = models.CharField(max_length=100, default='Українці')
