@@ -34,6 +34,7 @@ urlpatterns = ([
     path('api/v1/map', include('apps.staticmap.urls')),
     path('api/v1/news', include('apps.news.urls')),
     path('api/v1/expeditions', include('apps.expeditions.urls')),
+    path('api/v1/educational_section', include('apps.educational_section.urls')),
     path('api/v1/projects', include('apps.projects.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
@@ -41,4 +42,3 @@ urlpatterns = ([
 ]
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 urlpatterns += staticfiles_urlpatterns()
-
