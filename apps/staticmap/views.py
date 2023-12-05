@@ -16,6 +16,13 @@ class MapListView(GenericAPIView):
         # не работает на версии джанго под рендер
         result_count = (Song.objects.all().values('location__official_name_city', 'location__coordinates')
                         .annotate(count=Count('location__official_name_city')))
+        archive = Song.objects.all().values('archive')
+        # print(list(count_choice))
+        # k1 = [v for i, v in k.items() for k in count_choice]
+
+        k1 = set([i for j in archive for k, i in j.items()])
+        print(k1)
+
         return Response(result_count)
 
 
