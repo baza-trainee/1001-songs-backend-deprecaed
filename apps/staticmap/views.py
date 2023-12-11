@@ -5,25 +5,24 @@ from rest_framework import status
 
 from apps.songs.models import Song
 from apps.songs.serializers import SongSerializer
+# from apps.songs.choices import ARCHIVES_CHOICES
+
+ARCHIVES_CHOICES = []
 
 
 class MapListView(GenericAPIView):
     """
-    List of songs by city
+    List of songs with cities, lists of cities and archives
     """
     @staticmethod
     def get(*args, **kwargs):
-        # не работает на версии джанго под рендер
         result_count = (Song.objects.all().values('location__official_name_city', 'location__coordinates')
                         .annotate(count=Count('location__official_name_city')))
-        archive = Song.objects.all().values('archive')
-        # print(list(count_choice))
-        # k1 = [v for i, v in k.items() for k in count_choice]
-
-        k1 = set([i for j in archive for k, i in j.items()])
-        print(k1)
-
-        return Response(result_count)
+        archives = Song.objects.all().values('archive')
+        cities = Song.objects.all().values('location__official_name_city')
+        list_of_archives = {i for j in archives for i in j.values()}
+        list_of_cities = {i for j in cities for i in j.values()}
+        return Response([result_count, list_of_archives, list_of_cities])
 
 
 class MapCityListView(GenericAPIView):

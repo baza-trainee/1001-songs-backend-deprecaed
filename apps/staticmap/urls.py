@@ -6,3 +6,5 @@ urlpatterns = [
     path('', MapListView.as_view(), name='list_map'),
     path('/city', MapCityListView.as_view(), name='city_list_map'),
 ]
+
+

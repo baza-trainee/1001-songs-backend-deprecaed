@@ -9,8 +9,8 @@ from .serializers import SongSerializer
 from .filters import SongFilter
 
 
-# from rest_framework.filters import SearchFilter, OrderingFilter
-# from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class SongListView(ListAPIView):
@@ -20,7 +20,7 @@ class SongListView(ListAPIView):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
     filterset_class = SongFilter
-    # filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     # filterset_fields = [
     #     'location__country',
     #     'location__region',
