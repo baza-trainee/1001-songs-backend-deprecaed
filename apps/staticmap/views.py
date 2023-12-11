@@ -22,7 +22,7 @@ class MapListView(GenericAPIView):
         cities = Song.objects.all().values('location__official_name_city')
         list_of_archives = {i for j in archives for i in j.values()}
         list_of_cities = {i for j in cities for i in j.values()}
-        return Response([result_count, list_of_archives, list_of_cities])
+        return Response([result_count, f'list_of_archives: {list_of_archives}, list_of_cities: {list_of_cities}'])
 
 
 class MapCityListView(GenericAPIView):
