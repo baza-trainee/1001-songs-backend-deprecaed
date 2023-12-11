@@ -5,9 +5,6 @@ from rest_framework import status
 
 from apps.songs.models import Song
 from apps.songs.serializers import SongSerializer
-# from apps.songs.choices import ARCHIVES_CHOICES
-
-ARCHIVES_CHOICES = []
 
 
 class MapListView(GenericAPIView):
