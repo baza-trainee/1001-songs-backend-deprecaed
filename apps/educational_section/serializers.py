@@ -7,6 +7,6 @@ class EducationalSectionSerializer(ModelSerializer):
     class Meta:
         model = EducationalSection
         fields = (
-            'id', 'title', 'description', 'photo',
+            'id', 'title', 'description', 'photo1', 'photo2', 'photo3', 'photo4', 'photo5',
         )
 

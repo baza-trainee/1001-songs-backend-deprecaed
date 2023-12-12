@@ -9,14 +9,17 @@ from apps.songs.serializers import SongSerializer
 
 class MapListView(GenericAPIView):
     """
-    List of songs by city
+    List of songs with cities, lists of cities and archives
     """
     @staticmethod
     def get(*args, **kwargs):
-        # не работает на версии джанго под рендер
         result_count = (Song.objects.all().values('location__official_name_city', 'location__coordinates')
                         .annotate(count=Count('location__official_name_city')))
-        return Response(result_count)
+        archives = Song.objects.all().values('archive')
+        cities = Song.objects.all().values('location__official_name_city')
+        list_of_archives = {i for j in archives for i in j.values()}
+        list_of_cities = {i for j in cities for i in j.values()}
+        return Response([result_count, f'list_of_archives: {list_of_archives}, list_of_cities: {list_of_cities}'])
 
 
 class MapCityListView(GenericAPIView):
