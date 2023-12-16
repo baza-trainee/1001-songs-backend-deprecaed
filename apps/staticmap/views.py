@@ -15,11 +15,11 @@ class MapListView(GenericAPIView):
     def get(*args, **kwargs):
         result_count = (Song.objects.all().values('location__official_name_city', 'location__coordinates')
                         .annotate(count=Count('location__official_name_city')))
-        archives = Song.objects.all().values('archive')
         cities = Song.objects.all().values('location__official_name_city')
-        list_of_archives = {i for j in archives for i in j.values()}
+        archives = Song.objects.all().values('archive')
         list_of_cities = {i for j in cities for i in j.values()}
-        return Response([result_count, f'list_of_archives: {list_of_archives}, list_of_cities: {list_of_cities}'])
+        list_of_archives = {i for j in archives for i in j.values()}
+        return Response([result_count,  list_of_cities, list_of_archives])
 
 
 class MapCityListView(GenericAPIView):
