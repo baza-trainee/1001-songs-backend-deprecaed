@@ -11,6 +11,8 @@ class MapListView(GenericAPIView):
     """
     List of songs with cities, lists of cities and archives
     """
+    # queryset = Song.objects.all()
+
     @staticmethod
     def get(*args, **kwargs):
         result_count = (Song.objects.all().values('location__official_name_city', 'location__coordinates')
