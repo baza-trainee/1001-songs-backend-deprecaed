@@ -11,7 +11,7 @@ class MapListView(GenericAPIView):
     """
     List of songs with cities, lists of cities and archives
     """
-    # queryset = Song.objects.all()
+    queryset = Song.objects.all()
 
     @staticmethod
     def get(*args, **kwargs):
