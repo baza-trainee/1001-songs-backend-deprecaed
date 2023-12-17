@@ -1,6 +1,6 @@
 from django.db.models import Count
 
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
 from .models import Song
@@ -28,3 +28,11 @@ class SongAndMarkersListaView(GenericAPIView):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response([f'list_songs', serializer.data, f'list_markers', list_markers])
+
+
+class SongRetrieveView(RetrieveAPIView):
+    """
+    Retrieve song by id
+    """
+    queryset = Song.objects.all()
+    serializer_class = SongSerializer
