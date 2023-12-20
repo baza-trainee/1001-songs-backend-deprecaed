@@ -11,13 +11,13 @@ class NewsView(generics.RetrieveAPIView):
     - GET: Retrieve information about a news item using its identifier (pk).
 
     URL:
-    - /news/<int:pk>/
+    - /news/<int:pk>
 
     Parameters:
     - pk: News item identifier (integer).
 
     Example:
-    - /news/1/
+    - /news/1
     """
     queryset = News.objects.all()
     serializer_class = NewsSerializer
@@ -33,7 +33,7 @@ class NewsViewAll(generics.ListCreateAPIView):
     - GET: Retrieve information about a news item using its identifier (pk).
 
     URL:
-    - /news/
+    - /news
 
     Parameters:
     - pk: News item identifier (integer).
@@ -42,7 +42,6 @@ class NewsViewAll(generics.ListCreateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     http_method_names = ['get']
-
 
 
 class NewsListDetailView(generics.ListCreateAPIView):
@@ -54,10 +53,10 @@ class NewsListDetailView(generics.ListCreateAPIView):
     - POST: Create a new news detail.
 
     URL:
-    - /news/_detail/
+    - /news/_detail
 
     Example:
-    - /news/_detail/
+    - /news/_detail
     """
     queryset = NewsDetail.objects.all()
     serializer_class = NewsDetailsSerializer
@@ -72,13 +71,13 @@ class NewsDetailView(generics.RetrieveAPIView):
     - GET: Retrieve information about a news detail using its identifier (pk).
 
     URL:
-    - /news/_detail/<int:pk>/
+    - /news/_detail/<int:pk>
 
     Parameters:
     - pk: News detail identifier (integer).
 
     Example:
-    - /news/_detail/1/
+    - /news/_detail/1
     """
     queryset = NewsDetail.objects.all()
     serializer_class = NewsDetailsSerializer

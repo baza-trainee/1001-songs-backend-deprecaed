@@ -15,13 +15,17 @@ class MapListView(GenericAPIView):
 
     @staticmethod
     def get(*args, **kwargs):
-        result_count = (Song.objects.all().values('location__official_name_city', 'location__coordinates')
-                        .annotate(count=Count('location__official_name_city')))
-        cities = Song.objects.all().values('location__official_name_city')
-        archives = Song.objects.all().values('archive')
-        list_of_cities = {i for j in cities for i in j.values()}
-        list_of_archives = {i for j in archives for i in j.values()}
-        return Response([result_count,  list_of_cities, list_of_archives])
+        list_markers = (Song.objects.values('location__city_ua', 'location__coordinates')
+                        .annotate(count=Count('location__city_ua')))
+        list_cities = (Song.objects.order_by('location__city_ua').values('location__city_ua', 'location__city_eng')
+                       .distinct('location__city_ua'))
+        list_archives = (Song.objects.order_by('archive_ua').values('archive_ua', 'archive_eng')
+                         .distinct('archive_ua'))
+        return Response([
+            {'list_markers': list_markers},
+            {'list_cities': list_cities},
+            {'list_archives': list_archives}
+        ])
 
 
 class MapCityListView(GenericAPIView):
@@ -32,9 +36,8 @@ class MapCityListView(GenericAPIView):
 
     def get(self, *args, **kwargs):
         params = self.request.query_params.dict()
-        print(params)
         if params:
-            songs_city = Song.objects.filter(location__official_name_city=params['official_name_city'])
+            songs_city = Song.objects.filter(location__city_ua=params['city_ua'])
             serializer = SongSerializer(instance=songs_city, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:

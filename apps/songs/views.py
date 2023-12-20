@@ -18,8 +18,8 @@ class SongAndMarkersListaView(GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-        list_markers = (queryset.values('location__official_name_city', 'location__coordinates')
-                        .annotate(count=Count('location__official_name_city')))
+        list_markers = (queryset.values('location__city_ua', 'location__coordinates')
+                        .annotate(count=Count('location__city_ua')))
 
         page = self.paginate_queryset(queryset)
         if page is not None:
@@ -27,7 +27,7 @@ class SongAndMarkersListaView(GenericAPIView):
             return self.get_paginated_response(serializer.data)
 
         serializer = self.get_serializer(queryset, many=True)
-        return Response([f'list_songs', serializer.data, f'list_markers', list_markers])
+        return Response([{'list_songs': serializer.data}, {'list_markers': list_markers}])
 
 
 class SongRetrieveView(RetrieveAPIView):
