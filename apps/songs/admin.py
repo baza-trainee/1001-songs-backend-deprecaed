@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import path, reverse
 from django.utils.html import format_html
 
-from apps.news.models import News, NewsDetail
 from apps.songs.admin_helpers import copy_song
 from apps.songs.models import Song, SongLocation, SongDetail, SongMedia
 

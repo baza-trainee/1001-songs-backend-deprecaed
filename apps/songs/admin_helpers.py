@@ -40,7 +40,8 @@ def copy_song(request, song_id) -> HttpResponseRedirect:
             administrative_code=old_location.administrative_code,
             ethnos=old_location.ethnos,
             ethnographic_district=old_location.ethnographic_district,
-            official_name_city=old_location.official_name_city,
+            city_ua=old_location.city_ua,
+            city_eng=old_location.city_eng,
             unofficial_name_city=old_location.unofficial_name_city,
             recording_location=old_location.recording_location,
         )

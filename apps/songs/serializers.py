@@ -8,7 +8,7 @@ class SongLocationSerializer(ModelSerializer):
     class Meta:
         model = SongLocation
         fields = ('id', 'country', 'region', 'district_center', 'administrative_code', 'ethnos',
-                  'ethnographic_district', 'official_name_city', 'unofficial_name_city', 'recording_location',
+                  'ethnographic_district', 'city_ua', 'city_eng', 'unofficial_name_city', 'recording_location',
                   'coordinates',
                   )
 
@@ -34,7 +34,7 @@ class SongSerializer(ModelSerializer):
     class Meta:
         model = Song
         fields = ('id', 'title', 'recording_date', 'performers', 'collectors', 'source', 'location',
-                  'archive', 'details', 'media',
+                  'archive_ua', 'archive_eng', 'details', 'media',
                   )
 
     @atomic
