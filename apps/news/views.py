@@ -53,10 +53,10 @@ class NewsListDetailView(generics.ListCreateAPIView):
     - POST: Create a new news detail.
 
     URL:
-    - /news/_detail
+    - /news/detail
 
     Example:
-    - /news/_detail
+    - /news/detail
     """
     queryset = NewsDetail.objects.all()
     serializer_class = NewsDetailsSerializer
@@ -71,13 +71,13 @@ class NewsDetailView(generics.RetrieveAPIView):
     - GET: Retrieve information about a news detail using its identifier (pk).
 
     URL:
-    - /news/_detail/<int:pk>
+    - /news/detail/<int:pk>
 
     Parameters:
     - pk: News detail identifier (integer).
 
     Example:
-    - /news/_detail/1
+    - /news/detail/1
     """
     queryset = NewsDetail.objects.all()
     serializer_class = NewsDetailsSerializer
