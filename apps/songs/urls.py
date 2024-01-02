@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import SongAndMarkersListaView, SongRetrieveView
+from .views import SongsAndMarkersListView, SongRetrieveByIdView
 
 urlpatterns = [
-    path('', SongAndMarkersListaView.as_view(), name='list_songs'),
-    path('/<uuid:pk>', SongRetrieveView.as_view(), name='retrieve_song'),
+    path('', SongsAndMarkersListView.as_view(), name='list_songs'),
+    path('/<uuid:pk>', SongRetrieveByIdView.as_view(), name='retrieve_song'),
 ]
