@@ -8,7 +8,7 @@ from .serializers import SongSerializer
 from .filters import SongFilter
 
 
-class SongAndMarkersListaView(GenericAPIView):
+class SongsAndMarkersListView(GenericAPIView):
     """
     List of songs and markers
     """
@@ -30,7 +30,7 @@ class SongAndMarkersListaView(GenericAPIView):
         return Response([{'list_songs': serializer.data}, {'list_markers': list_markers}])
 
 
-class SongRetrieveView(RetrieveAPIView):
+class SongRetrieveByIdView(RetrieveAPIView):
     """
     Retrieve song by id
     """
