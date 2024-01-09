@@ -15,7 +15,7 @@ class SongESMediaInline(admin.StackedInline):
 
 @admin.register(SongES)
 class SongsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'genre', 'details', 'media',)
+    list_display = ('title', 'genre', 'details', 'media',)
     list_filter = ('created_at', 'updated_at')
     inlines = [SongESMediaInline, SongESDetailsInline]
     search_fields = ('title',)

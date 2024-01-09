@@ -43,7 +43,7 @@ class SongLocation(models.Model):
     city_eng = models.CharField(max_length=100)
     unofficial_name_city = models.CharField(max_length=100, blank=True)
     recording_location = models.CharField(max_length=100, blank=True)
-    coordinates = models.CharField(max_length=30)
+    coordinates = models.CharField(max_length=60)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

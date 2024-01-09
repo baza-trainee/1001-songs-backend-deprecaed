@@ -6,7 +6,7 @@ from .models import UserModel, ProfileModel
 @admin.register(UserModel)
 class UserAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'email', 'is_active', 'is_scientist', 'is_staff',  'is_superuser',
+        'email', 'is_active', 'is_scientist', 'is_staff',  'is_superuser',
         'last_login', 'created_at', 'updated_at', 'profile'
     )
 
