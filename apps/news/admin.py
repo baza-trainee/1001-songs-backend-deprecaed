@@ -14,7 +14,7 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ('type_of_news', 'date', 'news_title', 'location')
     list_filter = ('type_of_news', 'date')
     search_fields = ('news_title', 'location')
-    ordering = ('date',)
+    ordering = ('-date',)
 
 
 @admin.register(NewsDetail)

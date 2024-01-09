@@ -23,7 +23,7 @@ class SongMediaInline(admin.StackedInline):
 
 @admin.register(Song)
 class SongsAdmin(admin.ModelAdmin):
-    list_display = ('copy_button', 'id', 'title', 'recording_date', 'performers',
+    list_display = ('title', 'copy_button', 'recording_date', 'performers',
                     'collectors', 'source', 'location', 'details', 'media',)
     list_filter = ('created_at', 'updated_at')
     inlines = [SongLocationInline, SongDetailInline, SongMediaInline]
@@ -54,20 +54,17 @@ class SongsAdmin(admin.ModelAdmin):
 class SongLocationAdmin(admin.ModelAdmin):
     list_display = ('song', 'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
-    search_fields = ('song',)
 
 
 @admin.register(SongDetail)
 class SongDetailsAdmin(admin.ModelAdmin):
     list_display = ('song', 'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
-    search_fields = ('song',)
 
 
 @admin.register(SongMedia)
 class SongMediaAdmin(admin.ModelAdmin):
     list_display = ('song', 'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
-    search_fields = ('song',)
 
 
