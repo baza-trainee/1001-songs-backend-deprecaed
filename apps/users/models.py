@@ -8,7 +8,9 @@ from apps.users.managers import UserManager
 class UserModel(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = 'users'
-        verbose_name = 'user'
+        ordering = ['-created_at']
+        verbose_name = 'User'
+        verbose_name_plural = "Users"
 
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
