@@ -3,7 +3,7 @@ from django.db import models
 
 class EducationalSection(models.Model):
     class Meta:
-        db_table = "educational_sections"
+        db_table = "educational_section"
         ordering = ['-created_at']
         verbose_name = "Educational section"
         verbose_name_plural = "Educational sections"

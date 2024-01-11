@@ -7,7 +7,9 @@ from .models import SongES, SongESMedia, SongESDetails
 class SongESMediaSerializer(ModelSerializer):
     class Meta:
         model = SongESMedia
-        fields = ('id', 'photos', 'audio_example', 'video_example', 'ethnographic_photo', 'area', 'comment_map')
+        fields = (
+            'id', 'photo_1', 'photo_2', 'audio_example', 'video_example', 'ethnographic_photo', 'area', 'comment_map'
+        )
 
 
 class SongESDetailsSerializer(ModelSerializer):

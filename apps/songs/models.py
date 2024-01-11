@@ -7,6 +7,12 @@ from .choices import GENRE_CYCLE_CHOICES, COUNTRY_CHOICES, REGION_CHOICES
 
 
 class Song(models.Model):
+    class Meta:
+        db_table = "songs_db"
+        ordering = ['-created_at']
+        verbose_name = "Song"
+        verbose_name_plural = "Songs"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200, unique=True)
     recording_date = models.DateField()
@@ -20,17 +26,17 @@ class Song(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
-    class Meta:
-        db_table = "songs_db"
-        ordering = ['-created_at']
-        verbose_name = "Song"
-        verbose_name_plural = "Songs"
-
     def __str__(self) -> str:
         return self.title
 
 
 class SongLocation(models.Model):
+    class Meta:
+        db_table = 'location'
+        ordering = ['-created_at']
+        verbose_name = "Song Location"
+        verbose_name_plural = "Songs Locations"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='location')
     country = models.CharField(max_length=100, default='Україна', choices=COUNTRY_CHOICES)
@@ -47,17 +53,17 @@ class SongLocation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        db_table = 'location'
-        ordering = ['-created_at']
-        verbose_name = "Song Location"
-        verbose_name_plural = "Songs Locations"
-
     def __str__(self) -> str:
         return self.song.title
 
 
 class SongDetail(models.Model):
+    class Meta:
+        db_table = 'details'
+        ordering = ['-created_at']
+        verbose_name = "Song Details"
+        verbose_name_plural = "Songs Details"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='details')
     incipit = models.CharField(max_length=100)
@@ -67,17 +73,17 @@ class SongDetail(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        db_table = 'details'
-        ordering = ['-created_at']
-        verbose_name = "Song Details"
-        verbose_name_plural = "Songs Details"
-
     def __str__(self) -> str:
         return self.song.title
 
 
 class SongMedia(models.Model):
+    class Meta:
+        db_table = 'media'
+        ordering = ['-created_at']
+        verbose_name = "Song Media"
+        verbose_name_plural = "Songs Media"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='media')
     stereo_audio = models.FileField(blank=True)
@@ -89,12 +95,6 @@ class SongMedia(models.Model):
     melogeographical_data = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'media'
-        ordering = ['-created_at']
-        verbose_name = "Song Media"
-        verbose_name_plural = "Songs Media"
 
     def __str__(self) -> str:
         return self.song.title

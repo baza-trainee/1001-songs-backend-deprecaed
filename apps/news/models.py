@@ -1,33 +1,24 @@
 from django.db import models
 
-from apps.news.choices import TYPES
+from .choices import TYPES_NEWS
 
 
 class News(models.Model):
     class Meta:
+        ordering = ['-created_at']
         verbose_name = "News"
         verbose_name_plural = "News"
 
-    type_of_news = models.CharField(max_length=20, choices=TYPES)
-    date = models.DateField()
-    news_title = models.CharField(max_length=200, blank=True)
-    location = models.CharField(max_length=200, blank=True)
-    photo = models.ImageField(blank=True)
-
-
-class NewsDetail(models.Model):
-    class Meta:
-        verbose_name = "News Detail"
-        verbose_name_plural = "News Details"
-
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
     news_title = models.CharField(max_length=200)
+    type_of_news = models.CharField(max_length=40, choices=TYPES_NEWS)
     date = models.DateField()
     location = models.CharField(max_length=200)
-    photo1 = models.ImageField(blank=True)
-    text1 = models.TextField(blank=True)
-    photo2 = models.ImageField(blank=True)
-    text2 = models.TextField(blank=True)
-    author = models.CharField(max_length=200, blank=True)
-    editor = models.CharField(max_length=200, blank=True)
-    photos = models.ManyToManyField(News, blank=True, related_name='related_news_details')
+    photo_1 = models.ImageField(blank=True)
+    text_1 = models.TextField(blank=True)
+    photo_2 = models.ImageField(blank=True)
+    text_2 = models.TextField(blank=True)
+    author = models.CharField(max_length=100, blank=True)
+    editor = models.CharField(max_length=100, blank=True)
+    svitliny = models.CharField(max_length=100, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)

@@ -3,7 +3,7 @@ import uuid
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-from .choices_genre_songs_es import GENRE_ES_CHOICES
+from .choices import GENRE_ES_CHOICES
 
 
 class SongES(models.Model):
@@ -54,7 +54,8 @@ class SongESMedia(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song_es = models.OneToOneField(SongES, on_delete=models.CASCADE, related_name='media')
-    photos = ArrayField(models.ImageField(), blank=True)
+    photo_1 = models.ImageField(blank=True)
+    photo_2 = models.ImageField(blank=True)
     audio_example = models.FileField(blank=True)
     video_example = models.URLField(blank=True)
     ethnographic_photo = models.ImageField(blank=True)
