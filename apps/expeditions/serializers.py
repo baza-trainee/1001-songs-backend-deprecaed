@@ -7,7 +7,7 @@ class ExpeditionSerializer(ModelSerializer):
     class Meta:
         model = Expedition
         fields = (
-            'title', 'date_event', 'brief_description', 'location',
+            'id', 'title', 'date_event', 'brief_description', 'location',
         )
 
 
