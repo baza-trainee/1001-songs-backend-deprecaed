@@ -5,6 +5,7 @@ from .choices import TYPES_NEWS
 
 class News(models.Model):
     class Meta:
+        db_table = 'news'
         ordering = ['-created_at']
         verbose_name = "News"
         verbose_name_plural = "News"
