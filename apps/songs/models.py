@@ -1,6 +1,5 @@
 import uuid
 
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from .choices import GENRE_CYCLE_CHOICES, COUNTRY_CHOICES, REGION_CHOICES
@@ -87,7 +86,12 @@ class SongMedia(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='media')
     stereo_audio = models.FileField(blank=True)
-    multichannel_audio = ArrayField(models.FileField(), blank=True)
+    multichannel_audio1 = models.FileField(blank=True)
+    multichannel_audio2 = models.FileField(blank=True)
+    multichannel_audio3 = models.FileField(blank=True)
+    multichannel_audio4 = models.FileField(blank=True)
+    multichannel_audio5 = models.FileField(blank=True)
+    multichannel_audio6 = models.FileField(blank=True)
     video_file = models.URLField(blank=True)
     text = models.TextField(blank=True)
     photo_of_performers = models.ImageField(blank=True)

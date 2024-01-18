@@ -66,5 +66,3 @@ class SongDetailsAdmin(admin.ModelAdmin):
 class SongMediaAdmin(admin.ModelAdmin):
     list_display = ('song', 'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
-
-
