@@ -48,21 +48,3 @@ class SongsAdmin(admin.ModelAdmin):
 
     copy_button.short_description = 'Copy Song'
     copy_button.allow_tags = True
-
-
-@admin.register(SongLocation)
-class SongLocationAdmin(admin.ModelAdmin):
-    list_display = ('song', 'created_at', 'updated_at')
-    list_filter = ('created_at', 'updated_at')
-
-
-@admin.register(SongDetail)
-class SongDetailsAdmin(admin.ModelAdmin):
-    list_display = ('song', 'created_at', 'updated_at')
-    list_filter = ('created_at', 'updated_at')
-
-
-@admin.register(SongMedia)
-class SongMediaAdmin(admin.ModelAdmin):
-    list_display = ('song', 'created_at', 'updated_at')
-    list_filter = ('created_at', 'updated_at')
