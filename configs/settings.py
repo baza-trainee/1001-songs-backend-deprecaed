@@ -57,14 +57,16 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_spectacular',
 
-    'apps.news',
+    'apps.auth',
     'apps.educational_section',
     'apps.expeditions',
-    'apps.projects',
-    'apps.auth',
-    'apps.users',
+    'apps.footer',
+    'apps.news',
+    'apps.modal_window',
     'apps.songs',
     'apps.songs_es',
+    'apps.projects',
+    'apps.users',
 ]
 
 MIDDLEWARE = [
