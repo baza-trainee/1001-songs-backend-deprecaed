@@ -8,7 +8,8 @@ class SongESMediaSerializer(ModelSerializer):
     class Meta:
         model = SongESMedia
         fields = (
-            'id', 'photo_1', 'photo_2', 'audio_example', 'video_example', 'ethnographic_photo', 'area', 'comment_map'
+            'id', 'photo1', 'photo2', 'photo3', 'audio_example', 'video_example', 'ethnographic_photo', 'area',
+            'comment_map',
         )
 
 

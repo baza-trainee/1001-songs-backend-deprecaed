@@ -95,6 +95,8 @@ class SongMedia(models.Model):
     video_file = models.URLField(blank=True)
     text = models.TextField(blank=True)
     photo_of_performers = models.ImageField(blank=True)
+    photo_of_performers2 = models.ImageField(blank=True)
+    photo_of_performers3 = models.ImageField(blank=True)
     notes = models.CharField(max_length=255, blank=True)
     melogeographical_data = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

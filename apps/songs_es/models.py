@@ -53,8 +53,9 @@ class SongESMedia(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     song_es = models.OneToOneField(SongES, on_delete=models.CASCADE, related_name='media')
-    photo_1 = models.ImageField(blank=True)
-    photo_2 = models.ImageField(blank=True)
+    photo1 = models.ImageField(blank=True)
+    photo2 = models.ImageField(blank=True)
+    photo3 = models.ImageField(blank=True)
     audio_example = models.FileField(blank=True)
     video_example = models.URLField(blank=True)
     ethnographic_photo = models.ImageField(blank=True)
