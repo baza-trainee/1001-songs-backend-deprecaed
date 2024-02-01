@@ -22,10 +22,12 @@ class SongDetailSerializer(ModelSerializer):
 class SongMediaSerializer(ModelSerializer):
     class Meta:
         model = SongMedia
-        fields = ('id', 'stereo_audio', 'multichannel_audio1', 'multichannel_audio2', 'multichannel_audio3',
-                  'multichannel_audio4', 'multichannel_audio5', 'multichannel_audio6', 'video_file', 'text', 'photo_of_performers', 'notes',
-                  'melogeographical_data',
-                  )
+        fields = (
+            'id', 'stereo_audio', 'multichannel_audio1', 'multichannel_audio2', 'multichannel_audio3',
+            'multichannel_audio4', 'multichannel_audio5', 'multichannel_audio6', 'video_file', 'text',
+            'photo_of_performers', 'photo_of_performers2', 'photo_of_performers3', 'notes',
+            'melogeographical_data',
+        )
 
 
 class SongSerializer(ModelSerializer):
